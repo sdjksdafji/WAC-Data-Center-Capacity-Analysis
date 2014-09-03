@@ -43,5 +43,8 @@ readSessionData = function(filePath = "E:/UserSessionsSample.csv"){
 		result[is.na(result[, col]), col] <- 0
 	}
 
+	#rename timestamp to quanta
+	names(result)[names(result) == "Timestamp"] = "Quanta";
+	
 	return(result);
 }

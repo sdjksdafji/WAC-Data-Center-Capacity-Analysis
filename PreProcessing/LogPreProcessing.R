@@ -21,5 +21,7 @@ excelLogMem = excelLog[excelLog$TraceGroup == "ECS_Memory", ]
 
 excelLog = merge(excelLogMem, excelLogCpu, by = c("Quanta", "Machine", "Role", "Datacenter"));
 
-head(excelLog)
+names(excelLog) <- sub("x", "ECS_Memory", names(excelLog));
+names(excelLog) <- sub("y", "ECS_CPU", names(excelLog));
 
+head(excelLog)

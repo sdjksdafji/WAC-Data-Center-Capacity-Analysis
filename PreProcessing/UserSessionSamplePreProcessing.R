@@ -11,11 +11,11 @@ readSessionData = function(filePath = "E:/UserSessionsSample.csv"){
 	
 	xSample = sample[sample$App == "Excel", ];
 	
-	xSample$App = factor(excelSample$App);
-	xSample$AppMode = factor(excelSample$AppMode);
-	xSample$AppModeExtended = factor(excelSample$AppModeExtended);
+	xSample$App = factor(xSample$App);
+	xSample$AppMode = factor(xSample$AppMode);
+	xSample$AppModeExtended = factor(xSample$AppModeExtended);
 	
-	xSample$Mode = factor(paste(excelSample$AppMode, excelSample$AppModeExtended, sep = "."));
+	xSample$Mode = factor(paste(xSample$AppMode, xSample$AppModeExtended, sep = "."));
 	xSample = xSample[,!(names(xSample) %in% c("AppMode", "AppModeExtended"))];
 	
 	modes = levels(xSample$Mode);

@@ -13,7 +13,9 @@ inTrain = createDataPartition(data$Percentage.ECS_CPU_AVG, p = 4/5)[[1]]
 training = data[ inTrain,]
 testing = data[-inTrain,]
 
-addq = function(x) paste0("`", x, "`")
+predictors = grep("^SessionCount", names(data), value = T);
+
+addq <- function(x) paste0("`", x, "`");
 trainingFormula = as.formula(paste(addq(prediction) , " ~ ", paste(addq(predictors),collapse=" + " )))
 
 

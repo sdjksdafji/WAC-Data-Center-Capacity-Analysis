@@ -8,6 +8,7 @@ predictionCpu = "Percentage.ECS_CPU_AVG"
 
 library(caret)
 
+source("./PreProcessing/ReadData.R");
 data = readData();
 
 inTrain = createDataPartition(data$Percentage.ECS_CPU_AVG, p = 4/5)[[1]]
@@ -70,3 +71,24 @@ qplot(predCpu, testing[,paste(predictionCpu)]
 		, main = "Error Plot For Avg Cpu Prediction (Random Forest)")
 print("Error Summary For Avg Cpu Prediction (Random Forest)");
 summary(abs(predCpu - testing[,paste(predictionCpu)]));
+
+
+# SVM linear
+
+
+hypothesisMem3 = train(trainingFormula, method = "svmLinear", data = training);
+predMem = predict(hypothesisMem3, testing);
+windows();
+qplot(predMem, testing[,paste(predictionMem)]
+		, main = "Error Plot For Avg Mem Prediction (SVM without Kernel)")
+print("Error Summary For Avg Mem Prediction (SVM without Kernel)");
+summary(abs(predMem - testing[,paste(predictionMem)]));
+
+hypothesisCpu3 = train(trainingFormulaCpu, method = "svmLinear", data = training);
+predCpu = predict(hypothesisCpu3, testing);
+windows();
+qplot(predCpu, testing[,paste(predictionCpu)]
+		, main = "Error Plot For Avg Cpu Prediction (SVM without Kernel)")
+print("Error Summary For Avg Cpu Prediction (SVM without Kernel)");
+summary(abs(predCpu - testing[,paste(predictionCpu)]));
+
